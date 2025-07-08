@@ -4,6 +4,7 @@
     { "src": "server.js", "use": "@vercel/node" }
   ],
   "routes": [
+    { "src": "/(background\\.js|content\\.js|popup\\.js)", "dest": "/public/$1" },
     { "src": "/api/(.*)", "dest": "server.js" },
     { "src": "/public/(.*)", "dest": "/public/$1" },
     { "src": "/(.*)", "dest": "server.js" }
