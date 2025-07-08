@@ -40,11 +40,24 @@ async function initMongoDB() {
     process.exit(1);
   }
 }
-
+const path=require("path")
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/background.js', (req, res) => {
+  const filePath = path.join(__dirname, 'public', 'background.js');
+  res.sendFile(filePath);
+});
+app.get('/content.js', (req, res) => {
+  const filePath = path.join(__dirname, 'public', 'content.js');
+  res.sendFile(filePath);
+});
+app.get('/popup.js', (req, res) => {
+  const filePath = path.join(__dirname, 'public', 'popup.js');
+  res.sendFile(filePath);
+});
 
 // Create HTTP server
 const server = http.createServer(app);
